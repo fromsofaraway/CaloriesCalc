@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <title>Расчет Калорий</title>
+  <style>
+    .hero {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+    .hero h1 {
+      margin: 0;
+      color: white;
+    }
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      padding: 2rem;
+      margin: 1rem;
+    }
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+<nav class="container-fluid">
+  <ul>
+    <li><strong>Расчет Калорий</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#diary">Дневник</a></li>
+    <li><a href="#add">Добавить Продукт</a></li>
+    <li><a href="#register" role="button">Регистрация</a></li>
+  </ul>
+</nav>
+<div class="hero">
+  <h1>Добро пожаловать в ваш дневник питания!</h1>
+</div>
+<main class="container">
+  <div class="grid">
+    <section class="card">
+      <img src="https://source.unsplash.com/featured/?healthy,food" alt="Здоровое питание" />
+      <h2>Ваш Дневник Питания</h2>
+      <p>Здесь будут отображаться ваши последние записи о питании.</p>
+    </section>
+    <section class="card">
+      <img src="https://source.unsplash.com/featured/?food,diary" alt="Добавить Продукт" />
+      <h2>Добавить Продукт</h2>
+      <p>Используйте эту форму, чтобы добавить новые продукты в ваш дневник.</p>
+    </section>
+    <section class="card">
+      <img src="https://source.unsplash.com/featured/?registration" alt="Регистрация" />
+      <h2>Регистрация</h2>
+      <p>Если вы новый пользователь, пожалуйста, зарегистрируйтесь, чтобы начать использовать сервис.</p>
+    </section>
+  </div>
+</main>
+<section aria-label="Subscribe example" class="container">
+  <article>
+    <h2>Подпишитесь на наши обновления</h2>
+    <p>Будьте в курсе последних новостей и обновлений сервиса.</p>
+    <form class="grid" onsubmit="subscribe(event)">
+      <input type="text" id="firstname" name="firstname" placeholder="Ваше имя" aria-label="Ваше имя" required />
+      <input type="email" id="email" name="email" placeholder="Ваш email" aria-label="Ваш email" required />
+      <button type="submit">П
+        одписаться</button>
+    </form>
+  </article>
+</section>
+<footer class="container">
+  <small>
+    <a href="#">Политика конфиденциальности</a> • <a href="#">Контакты</a>
+  </small>
+</footer>
+<script>
+  function subscribe(event) {
+    event.preventDefault();
+    alert('Спасибо за подписку, ' + document.getElementById('firstname').value + '!');
+  }
+</script>
+
+</body>
+</html>

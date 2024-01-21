@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <title>Расчет Калорий</title>
+</head>
+<body>
+<nav class="container-fluid">
+  <ul>
+    <li><strong>Расчет Калорий</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#diary">Дневник</a></li>
+    <li><a href="#add">Добавить Продукт</a></li>
+    <li><a href="#register" role="button">Регистрация</a></li>
+  </ul>
+</nav>
+<main class="container">
+  <div class="grid">
+    <section>
+      <hgroup>
+        <h2>Добро пожаловать в ваш дневник питания!</h2>
+        <h3>Управляйте своим питанием легко и эффективно</h3>
+      </hgroup>
+      <p>Ведите учет калорий, следите за своим рационом и достигайте своих целей в здоровом питании.</p>
+      <figure>
+        <img src="https://source.unsplash.com/featured/?healthy,food" alt="Здоровое питание" />
+        <figcaption><a href="#" target="_blank">Узнать больше</a></figcaption>
+      </figure>
+      <h3 id="diary">Дневник Питания</h3>
+      <p>Здесь будут отображаться ваши последние записи о питании.</p>
+      <h3 id="add">Добавить Продукт</h3>
+      <p>
+        Используйте эту форму, чтобы добавить новые продукты в ваш дневник.</p>
+      <h3 id="register">Регистрация</h3>
+      <p>Если вы новый пользователь, пожалуйста, зарегистрируйтесь, чтобы начать использовать сервис.</p>
+    </section>
+  </div>
+</main>
+<section aria-label="Subscribe example">
+  <div class="container">
+    <article>
+      <hgroup>
+        <h2>Подпишитесь на наши обновления</h2>
+        <h3>Будьте в курсе последних новостей</h3>
+      </hgroup>
+      <form class="grid">
+        <input type="text" id="firstname" name="firstname" placeholder="Ваше имя" aria-label="Ваше имя" required />
+        <input type="email" id="email" name="email" placeholder="Ваш email" aria-label="Ваш email" required />
+        <button type="submit" onclick="event.preventDefault()">Подписаться</button>
+      </form>
+    </article>
+  </div>
+</section>
+<footer class="container">
+  <small>
+    <a href="#">Политика конфиденциальности</a> • <a href="#">Контакты</a>
+  </small>
+</footer>
+
+</body>
+</html>
