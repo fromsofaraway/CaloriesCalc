@@ -1,5 +1,6 @@
-package com.brow.caloriescalc.model;
+package com.brow.caloriescalc.security;
 
+import com.brow.caloriescalc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

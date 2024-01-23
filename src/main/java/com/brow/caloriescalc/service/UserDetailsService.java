@@ -1,7 +1,7 @@
 package com.brow.caloriescalc.service;
 
 import com.brow.caloriescalc.model.User;
-import com.brow.caloriescalc.model.UserPrincipal;
+import com.brow.caloriescalc.security.UserPrincipal;
 import com.brow.caloriescalc.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
