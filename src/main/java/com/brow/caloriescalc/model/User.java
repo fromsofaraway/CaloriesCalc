@@ -11,18 +11,32 @@ public class User {
     @Column
     private Long id;
     @Column
+    private String username;
+    @Column
     private String email;
     @Column
-    private Byte age;
+    private Integer age;
+    @Column
+    private Integer weight;
+    @Column
+    private Integer height;
     @Column
     private String name;
     @Column
     private String password;
 
-    public User(String email, Byte age, String name, String password) {
+    public User(String username, String email, Integer age, Integer weight, Integer height, String name, String password) {
+        this.username = username;
         this.email = email;
         this.age = age;
+        this.weight = weight;
+        this.height = height;
         this.name = name;
+        this.password = password;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -30,6 +44,14 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -40,12 +62,28 @@ public class User {
         this.email = email;
     }
 
-    public Byte getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(Byte age) {
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
     }
 
     public String getName() {

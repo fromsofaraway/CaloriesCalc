@@ -38,14 +38,6 @@ public class JWTProvider {
         }
     }
 
-    public String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(SecurityConstants.JWT_SECRET).build()
-                .parseClaimsJws(token)
-                .getBody();
-        return claims.getSubject();
-    }
-
 
     public String getUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()

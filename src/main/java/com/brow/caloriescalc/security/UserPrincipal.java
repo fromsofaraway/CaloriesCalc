@@ -13,7 +13,6 @@ public class UserPrincipal implements UserDetails {
 
     private User user;
 
-    @Autowired
     public UserPrincipal(User user) {
         this.user = user;
     }
@@ -30,7 +29,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getUsername();
     }
 
     @Override
