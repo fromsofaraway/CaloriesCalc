@@ -1,5 +1,7 @@
 package com.brow.caloriescalc.jwt;
 
+import com.brow.caloriescalc.model.Role;
+import com.brow.caloriescalc.model.RoleEnum;
 import com.brow.caloriescalc.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,10 +28,9 @@ public class JWTProviderTest {
     @BeforeEach
     void setup() {
         jwtProvider = new JWTProvider();
-        user = new User(
-                "browki",
-                "strongpassword"
-        );
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole(new Role(RoleEnum.ROLE_ADMIN));
         authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
     }
 

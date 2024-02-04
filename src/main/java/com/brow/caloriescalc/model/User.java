@@ -24,20 +24,15 @@ public class User {
     private String name;
     @Column
     private String password;
+    @Column
+    @OneToOne
+    private Role role;
 
-    public User(String username, String email, Integer age, Integer weight, Integer height, String name, String password) {
-        this.username = username;
-        this.email = email;
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-        this.name = name;
-        this.password = password;
-    }
 
-    public User(String username, String password) {
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public User(){}
@@ -100,5 +95,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
