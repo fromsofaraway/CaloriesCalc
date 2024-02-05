@@ -42,6 +42,4 @@ public class GlobalExceptionHandler {
         String errorMessage = ex.getLocalizedMessage();
         return new ResponseEntity<>(Collections.singletonMap("error", errorMessage), HttpStatus.BAD_REQUEST);
     }
-
-
 }

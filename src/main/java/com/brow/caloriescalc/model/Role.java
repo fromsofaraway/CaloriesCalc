@@ -2,7 +2,7 @@ package com.brow.caloriescalc.model;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "roles")
 public class Role {
     @Id
     @Column
@@ -14,6 +14,8 @@ public class Role {
     public Role(RoleEnum role) {
         this.role = role;
     }
+
+    public Role() {}
 
     public RoleEnum getRole() {
         return role;

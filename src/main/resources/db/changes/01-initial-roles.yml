@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 1
+                  type: BIGINT
+              - column:
+                  name: name
+                  value: "ROLE_USER"
+                  type: VARCHAR(255)
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 2
+                  type: BIGINT
+              - column:
+                  name: name
+                  value: "ROLE_ADMIN"
+                  type: VARCHAR(255)

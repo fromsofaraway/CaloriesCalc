@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -26,6 +27,10 @@ public class DiaryService {
     public FoodDiaryEntry saveDiaryEntry(FoodDiaryEntry entry) {
         return diaryRepository.save(entry);
     }
-}
+
+    public Optional<FoodDiaryEntry> getDiaryEntryById(Long id) {
+        return diaryRepository.findById(id);
+    }
+ }
 
 

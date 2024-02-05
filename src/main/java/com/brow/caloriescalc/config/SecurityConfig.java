@@ -23,15 +23,16 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/home", "/api/auth/signin")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()
+                                .requestMatchers("/", "/home", "/api/auth/signin")
+                                .permitAll()
+                                .anyRequest()
+//                        .authenticated()
+                                .permitAll()
                 )
-                .formLogin(login -> login
-                        .loginPage("/login")
-                        .permitAll()
-                )
+//                .formLogin(login -> login
+//                        .loginPage("/login")
+//                        .permitAll()
+//                )
                 .logout(logout -> logout
                                 .permitAll()
                                 .logoutSuccessUrl("/home")

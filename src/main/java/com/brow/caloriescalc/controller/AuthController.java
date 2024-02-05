@@ -35,7 +35,7 @@ public class AuthController {
             User user = new User();
             user.setUsername(registerDto.getUsername());
             user.setPassword(registerDto.getPassword());
-            user.setRole(new Role(RoleEnum.ROLE_ADMIN));
+            user.setRole(new Role(RoleEnum.ROLE_USER));
             userService.saveUser(user);
             return new ResponseEntity<>(new CommonResponseDto("User successfully registered"), HttpStatus.OK);
         }
