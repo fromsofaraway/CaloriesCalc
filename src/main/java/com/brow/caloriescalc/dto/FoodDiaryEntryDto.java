@@ -7,14 +7,14 @@ public class FoodDiaryEntryDto {
     private Long userId;
     private Long productId;
     private Double amount;
-    private LocalDateTime consumptionTime;
 
-    public FoodDiaryEntryDto(Long userId, Long productId, Double amount, LocalDateTime consumptionTime) {
+    public FoodDiaryEntryDto(Long userId, Long productId, Double amount) {
         this.userId = userId;
         this.productId = productId;
         this.amount = amount;
-        this.consumptionTime = consumptionTime;
     }
+
+    public FoodDiaryEntryDto(){}
 
     public Long getUserId() {
         return userId;
@@ -40,11 +40,4 @@ public class FoodDiaryEntryDto {
         this.amount = amount;
     }
 
-    public LocalDateTime getConsumptionTime() {
-        return consumptionTime;
-    }
-
-    public void setConsumptionTime(LocalDateTime consumptionTime) {
-        this.consumptionTime = consumptionTime;
-    }
 }

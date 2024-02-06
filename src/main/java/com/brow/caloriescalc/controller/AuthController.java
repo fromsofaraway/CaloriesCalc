@@ -2,9 +2,11 @@ package com.brow.caloriescalc.controller;
 
 import com.brow.caloriescalc.dto.AuthDto;
 import com.brow.caloriescalc.dto.CommonResponseDto;
+import com.brow.caloriescalc.exception.ResourceNotFoundException;
 import com.brow.caloriescalc.model.Role;
 import com.brow.caloriescalc.model.RoleEnum;
 import com.brow.caloriescalc.model.User;
+import com.brow.caloriescalc.service.RoleService;
 import com.brow.caloriescalc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +22,13 @@ public class AuthController {
 
     private UserService userService;
 
+    private RoleService roleService;
+
 
     @Autowired
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService, RoleService roleService) {
         this.userService = userService;
-
+        this.roleService = roleService;
     }
 
     @PostMapping("/signin")
@@ -33,9 +37,11 @@ public class AuthController {
             return new ResponseEntity<>(new CommonResponseDto("Username is taken!"), HttpStatus.BAD_REQUEST);
         } else {
             User user = new User();
+            Role role = roleService.getRoleByName(RoleEnum.ROLE_USER)
+                    .orElseThrow(() -> new ResourceNotFoundException("ROLE_USER not found"));
             user.setUsername(registerDto.getUsername());
             user.setPassword(registerDto.getPassword());
-            user.setRole(new Role(RoleEnum.ROLE_USER));
+            user.setRole(role);
             userService.saveUser(user);
             return new ResponseEntity<>(new CommonResponseDto("User successfully registered"), HttpStatus.OK);
         }

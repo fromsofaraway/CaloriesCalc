@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: 1
                   type: BIGINT
               - column:
-                  name: role
+                  name: name
                   value: "ROLE_USER"
                   type: VARCHAR(255)
         - insert:
@@ -22,6 +22,6 @@ databaseChangeLog:
                   value: 2
                   type: BIGINT
               - column:
-                  name: role
+                  name: name
                   value: "ROLE_ADMIN"
                   type: VARCHAR(255)

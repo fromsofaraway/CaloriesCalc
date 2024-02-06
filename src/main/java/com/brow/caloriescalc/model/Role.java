@@ -7,22 +7,22 @@ public class Role {
     @Id
     @Column
     private Long id;
-    @Column
+    @Column(columnDefinition = "VARCHAR") // the only thing helped escape validation fail
     @Enumerated(EnumType.STRING)
-    private RoleEnum role;
+    private RoleEnum name;
 
-    public Role(RoleEnum role) {
-        this.role = role;
+    public Role(RoleEnum name) {
+        this.name = name;
     }
 
     public Role() {}
 
-    public RoleEnum getRole() {
-        return role;
+    public RoleEnum getName() {
+        return name;
     }
 
-    public void setRole(RoleEnum role) {
-        this.role = role;
+    public void setName(RoleEnum name) {
+        this.name = name;
     }
 }
 
