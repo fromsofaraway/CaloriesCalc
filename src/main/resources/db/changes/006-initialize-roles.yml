@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
-      author: your_name
+      id: 006-initialize-roles
+      author: brow-programmer
       changes:
         - insert:
             tableName: roles
@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: 1
                   type: BIGINT
               - column:
-                  name: name
+                  name: role
                   value: "ROLE_USER"
                   type: VARCHAR(255)
         - insert:
@@ -22,6 +22,6 @@ databaseChangeLog:
                   value: 2
                   type: BIGINT
               - column:
-                  name: name
+                  name: role
                   value: "ROLE_ADMIN"
                   type: VARCHAR(255)

@@ -1,3 +1,13 @@
 databaseChangeLog:
   - include:
-      file: db/changes/01-initial-roles.yml
+      file: db/changes/001-create-roles-table.yml
+  - include:
+      file: db/changes/002-create-products-table.yml
+  - include:
+      file: db/changes/003-create-users-table.yml
+  - include:
+      file: db/changes/004-create-food-diary-entries-table.yml
+  - include:
+      file: db/changes/005-add-foreign-keys.yml
+  - include:
+      file: db/changes/006-initialize-roles.yml

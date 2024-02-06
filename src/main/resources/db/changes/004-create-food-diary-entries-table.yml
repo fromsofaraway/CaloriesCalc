@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-food-diary-entries-table
+      author: brow-programmer
+      changes:
+        - createTable:
+            tableName: food_diary_entries
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: consumption_time
+                  type: datetime
+                  constraints:
+                    nullable: false

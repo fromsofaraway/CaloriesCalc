@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-users-table
+      author: brow-programmer
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: age
+                  type: int
+              - column:
+                  name: height
+                  type: int
+              - column:
+                  name: weight
+                  type: int

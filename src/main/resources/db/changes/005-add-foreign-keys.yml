@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-foreign-keys
+      author: brow-programmer
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: users
+            baseColumnNames: role_id
+            constraintName: fk_users_roles
+            referencedTableName: roles
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: food_diary_entries
+            baseColumnNames: user_id
+            constraintName: fk_diary_entries_users
+            referencedTableName: users
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: food_diary_entries
+            baseColumnNames: product_id
+            constraintName: fk_diary_entries_products
+            referencedTableName: products
+            referencedColumnNames: id
