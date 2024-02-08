@@ -1,5 +1,6 @@
 package com.brow.caloriescalc.controller;
 
+import com.brow.caloriescalc.dto.UserDto;
 import com.brow.caloriescalc.model.User;
 import com.brow.caloriescalc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
 }

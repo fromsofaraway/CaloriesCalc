@@ -1,26 +1,50 @@
 package com.brow.caloriescalc.service;
 
+import com.brow.caloriescalc.dto.AuthDto;
+import com.brow.caloriescalc.dto.UserDto;
+import com.brow.caloriescalc.exception.ResourceNotFoundException;
+import com.brow.caloriescalc.model.Role;
+import com.brow.caloriescalc.model.RoleEnum;
 import com.brow.caloriescalc.model.User;
 import com.brow.caloriescalc.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class UserService {
 
     private UserRepository userRepository;
+    private RoleService roleService;
+
+    private ModelMapper modelMapper;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
+        this.modelMapper = modelMapper;
     }
 
-    public User saveUser(User user) {
+    private UserDto convertToDto(User user) {
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    public User createUser(AuthDto authDto) {
+        User user = new User();
+        Role role = roleService.getRoleByName(RoleEnum.ROLE_USER)
+                .orElseThrow(() -> new ResourceNotFoundException("ROLE_USER not found"));
+
+        user.setUsername(authDto.getUsername());
+        user.setPassword(authDto.getPassword());
+        user.setRole(role);
+
         return userRepository.save(user);
     }
 
@@ -28,8 +52,18 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+//    public List<User> getAllUsers() {
+//        return userRepository.findAll();
+//    }
+
+    public List<UserDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        List<UserDto> userDtos = users.stream()
+                .map(user -> modelMapper.map(user, UserDto.class))
+                .collect(Collectors.toList());
+
+        return userDtos;
     }
 
     public User getUserByEmail(String email) {

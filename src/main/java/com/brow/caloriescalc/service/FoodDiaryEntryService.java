@@ -6,11 +6,14 @@ import com.brow.caloriescalc.model.FoodDiaryEntry;
 import com.brow.caloriescalc.model.Product;
 import com.brow.caloriescalc.model.User;
 import com.brow.caloriescalc.repository.FoodDiaryEntryRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,19 +25,38 @@ public class FoodDiaryEntryService {
 
     private ProductService productService;
 
+    private ModelMapper modelMapper;
+
     @Autowired
-    public FoodDiaryEntryService(FoodDiaryEntryRepository foodDiaryEntryRepository, UserService userService, ProductService productService) {
+    public FoodDiaryEntryService(FoodDiaryEntryRepository foodDiaryEntryRepository, UserService userService, ProductService productService, ModelMapper modelMapper) {
         this.foodDiaryEntryRepository = foodDiaryEntryRepository;
         this.userService = userService;
         this.productService = productService;
+        this.modelMapper = modelMapper;
     }
 
     public FoodDiaryEntry createEntry(FoodDiaryEntryDto entryDto) {
+        FoodDiaryEntry entry = new FoodDiaryEntry();
         User user = userService.getUserById(entryDto.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("User with id = " + entryDto.getUserId() + " not found"));
         Product product = productService.getProductById(entryDto.getProductId())
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id = " + entryDto.getProductId() + " not found"));
 
-        return new FoodDiaryEntry(user, product, entryDto.getAmount(), LocalDateTime.now());
+        entry.setUser(user);
+        entry.setProduct(product);
+        entry.setAmount(entryDto.getAmount());
+        entry.setConsumptionTime(LocalDateTime.now());
+
+        return foodDiaryEntryRepository.save(entry);
+    }
+
+    public List<FoodDiaryEntryDto> getAllEntries() {
+        List<FoodDiaryEntry> entries = foodDiaryEntryRepository.findAll();
+
+        List<FoodDiaryEntryDto> entryDtos = entries.stream()
+                .map(entry -> modelMapper.map(entry, FoodDiaryEntryDto.class))
+                .collect(Collectors.toList());
+
+        return entryDtos;
     }
 }
