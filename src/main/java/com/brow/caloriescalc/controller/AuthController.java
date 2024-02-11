@@ -2,7 +2,6 @@ package com.brow.caloriescalc.controller;
 
 import com.brow.caloriescalc.dto.AuthDto;
 import com.brow.caloriescalc.dto.CommonResponseDto;
-import com.brow.caloriescalc.service.RoleService;
 import com.brow.caloriescalc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

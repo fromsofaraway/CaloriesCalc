@@ -32,7 +32,7 @@ public class UserService {
         this.modelMapper = modelMapper;
     }
 
-    private UserDto convertToDto(User user) {
+    public UserDto convertToDto(User user) {
         return modelMapper.map(user, UserDto.class);
     }
 
@@ -48,13 +48,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
     }
-
-//    public List<User> getAllUsers() {
-//        return userRepository.findAll();
-//    }
 
     public List<UserDto> getAllUsers() {
         List<User> users = userRepository.findAll();

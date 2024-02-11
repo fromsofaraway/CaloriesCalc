@@ -1,5 +1,6 @@
 package com.brow.caloriescalc.service;
 
+import com.brow.caloriescalc.exception.ResourceNotFoundException;
 import com.brow.caloriescalc.model.Product;
 import com.brow.caloriescalc.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,9 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Optional<Product> getProductById(Long id) {
-        return productRepository.findById(id);
+    public Product getProductById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
     }
 
     public List<Product> getAllProducts() {

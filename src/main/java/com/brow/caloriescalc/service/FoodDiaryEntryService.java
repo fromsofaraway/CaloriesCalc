@@ -37,10 +37,8 @@ public class FoodDiaryEntryService {
 
     public FoodDiaryEntry createEntry(FoodDiaryEntryDto entryDto) {
         FoodDiaryEntry entry = new FoodDiaryEntry();
-        User user = userService.getUserById(entryDto.getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("User with id = " + entryDto.getUserId() + " not found"));
-        Product product = productService.getProductById(entryDto.getProductId())
-                .orElseThrow(() -> new ResourceNotFoundException("Product with id = " + entryDto.getProductId() + " not found"));
+        User user = userService.getUserById(entryDto.getUserId());
+        Product product = productService.getProductById(entryDto.getProductId());
 
         entry.setUser(user);
         entry.setProduct(product);

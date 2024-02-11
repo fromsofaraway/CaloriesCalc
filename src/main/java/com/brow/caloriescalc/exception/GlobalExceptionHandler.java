@@ -42,4 +42,10 @@ public class GlobalExceptionHandler {
         String errorMessage = ex.getLocalizedMessage();
         return new ResponseEntity<>(Collections.singletonMap("error", errorMessage), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleAbsenceOfResources(ResourceNotFoundException ex) {
+        String errorMessage = ex.getMessage();
+        return new ResponseEntity<>(Collections.singletonMap("error", errorMessage), HttpStatus.BAD_REQUEST);
+    }
 }

@@ -3,6 +3,7 @@ package com.brow.caloriescalc.dto;
 
 public class UserDto {
 
+    private Long id;
     private String username;
     private String email;
     private Integer age;
