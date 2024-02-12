@@ -57,4 +57,8 @@ public class FoodDiaryEntryService {
 
         return entryDtos;
     }
+
+    public List<FoodDiaryEntry> getEntriesForCurrentBusinessDay() {
+        return null;
+    }
 }

@@ -1,7 +1,6 @@
 package com.brow.caloriescalc.controller;
 
 import com.brow.caloriescalc.dto.UserDto;
-import com.brow.caloriescalc.exception.ResourceNotFoundException;
 import com.brow.caloriescalc.model.User;
 import com.brow.caloriescalc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {

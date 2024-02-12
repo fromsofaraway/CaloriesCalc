@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/diary")
 public class RestFoodDiaryEntryController {
 
-    private FoodDiaryEntryService foodDiaryEntryService;
+    private final FoodDiaryEntryService foodDiaryEntryService;
 
     @Autowired
     public RestFoodDiaryEntryController(FoodDiaryEntryService foodDiaryEntryService) {
