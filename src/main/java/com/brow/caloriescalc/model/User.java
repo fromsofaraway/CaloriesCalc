@@ -2,6 +2,9 @@ package com.brow.caloriescalc.model;
 
 import jakarta.persistence.*;
 
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -24,9 +27,14 @@ public class User {
     private String name;
     @Column
     private String password;
+    @Column
+    private ZoneId timeZone;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+
 
 
     public User(String username, String password, Role role) {
@@ -103,5 +111,21 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public ZoneId getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(ZoneId timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    public void setUtcTimeZone() {
+        this.timeZone = ZoneOffset.UTC;
+    }
+
+    public void setTimeZoneWithOffset(int hoursOffset) {
+        this.timeZone = ZoneOffset.ofHours(hoursOffset);
     }
 }

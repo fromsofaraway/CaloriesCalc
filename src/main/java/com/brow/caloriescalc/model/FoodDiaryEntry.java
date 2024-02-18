@@ -3,6 +3,7 @@ package com.brow.caloriescalc.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "food_diary_entries")
@@ -24,9 +25,9 @@ public class FoodDiaryEntry {
     private Double amount;
 
     @Column(nullable = false)
-    private LocalDateTime consumptionTime;
+    private ZonedDateTime consumptionTime;
 
-    public FoodDiaryEntry(User user, Product product, Double amount, LocalDateTime consumptionTime) {
+    public FoodDiaryEntry(User user, Product product, Double amount, ZonedDateTime consumptionTime) {
         this.user = user;
         this.product = product;
         this.amount = amount;
@@ -60,11 +61,13 @@ public class FoodDiaryEntry {
         this.amount = amount;
     }
 
-    public LocalDateTime getConsumptionTime() {
+
+
+    public ZonedDateTime getConsumptionTime() {
         return consumptionTime;
     }
 
-    public void setConsumptionTime(LocalDateTime consumptionTime) {
+    public void setConsumptionTime(ZonedDateTime consumptionTime) {
         this.consumptionTime = consumptionTime;
     }
 }

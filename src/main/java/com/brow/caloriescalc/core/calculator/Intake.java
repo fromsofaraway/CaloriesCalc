@@ -8,23 +8,26 @@ import java.util.List;
 public class Intake {
 
     private User user;
-    private List<FoodDiaryEntry> entries;
+    //    private List<FoodDiaryEntry> entries;
     private Double fat;
     private Double protein;
     private Double carbs;
     private Double calories;
 
 
-    public Intake(User user, List<FoodDiaryEntry> entries, Double fat, Double protein, Double carbs, Double calories) {
-        this.user = user;
-        this.entries = entries;
+    public Intake(Double fat, Double protein, Double carbs) {
+//        this.user = user;
+//        this.entries = entries;
         this.fat = fat;
         this.protein = protein;
         this.carbs = carbs;
-        this.calories = calories;
     }
 
     public Intake() {
+    }
+
+    public Intake add(Intake other) {
+        return new Intake(this.protein + other.protein, this.fat + other.fat, this.carbs + other.carbs);
     }
 
     public User getUser() {
@@ -35,13 +38,13 @@ public class Intake {
         this.user = user;
     }
 
-    public List<FoodDiaryEntry> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<FoodDiaryEntry> entries) {
-        this.entries = entries;
-    }
+//    public List<FoodDiaryEntry> getEntries() {
+//        return entries;
+//    }
+//
+//    public void setEntries(List<FoodDiaryEntry> entries) {
+//        this.entries = entries;
+//    }
 
     public Double getFat() {
         return fat;
@@ -68,7 +71,7 @@ public class Intake {
     }
 
     public Double getCalories() {
-        return calories;
+        return this.fat * 9 + this.protein * 4 + this.carbs * 4;
     }
 
     public void setCalories(Double calories) {

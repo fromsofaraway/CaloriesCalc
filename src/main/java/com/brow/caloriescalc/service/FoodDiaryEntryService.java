@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +44,7 @@ public class FoodDiaryEntryService {
         entry.setUser(user);
         entry.setProduct(product);
         entry.setAmount(entryDto.getAmount());
-        entry.setConsumptionTime(LocalDateTime.now());
+        entry.setConsumptionTime(ZonedDateTime.now());
 
         return foodDiaryEntryRepository.save(entry);
     }
@@ -58,7 +59,8 @@ public class FoodDiaryEntryService {
         return entryDtos;
     }
 
-    public List<FoodDiaryEntry> getEntriesForCurrentBusinessDay() {
-        return null;
+    public List<FoodDiaryEntry> getEntriesForCurrentBusinessDay(Long userId, ZonedDateTime startOfDay, ZonedDateTime endOfDay) {
+        List<FoodDiaryEntry> businessDayEntries = foodDiaryEntryRepository.findByUserIdAndConsumptionTimeBetween(userId, startOfDay, endOfDay);
+        return businessDayEntries;
     }
 }

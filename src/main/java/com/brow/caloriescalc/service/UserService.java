@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,6 +48,7 @@ public class UserService {
         user.setUsername(authDto.getUsername());
         user.setPassword(authDto.getPassword());
         user.setRole(role);
+//        user.setTimeZone();
 
         return userRepository.save(user);
     }
@@ -69,5 +74,18 @@ public class UserService {
 
     public User getByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+
+    public ZonedDateTime getStartOfDay(Long userId) {
+        User user = getUserById(userId);
+        ZoneId userZone = user.getTimeZone();
+        return ZonedDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT, userZone);
+    }
+
+    public ZonedDateTime getEndOfDay(Long userId) {
+        User user = getUserById(userId);
+        ZoneId userZone = user.getTimeZone();
+        return ZonedDateTime.of(LocalDate.now(), LocalTime.MAX, userZone);
     }
 }
