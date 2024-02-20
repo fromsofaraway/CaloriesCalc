@@ -19,6 +19,8 @@ public class Calculator {
     private final FoodDiaryEntryService foodDiaryEntryService;
     private final ProductService productService;
 
+    private Double measure = 0.01; //hardcode, to calculate everything in grams, will decide further how to implement
+
     @Autowired
     public Calculator(UserService userService, FoodDiaryEntryService foodDiaryEntryService, ProductService productService) {
         this.userService = userService;
@@ -32,9 +34,9 @@ public class Calculator {
         List<FoodDiaryEntry> currentUserEntries = foodDiaryEntryService.getEntriesForCurrentBusinessDay(userId, startOfDay, endOfDay);
 
         return currentUserEntries.stream()
-                .map(entry -> new Intake(entry.getProduct().getFat() * entry.getAmount(),
-                        entry.getProduct().getProtein() * entry.getAmount(),
-                        entry.getProduct().getCarbs() * entry.getAmount()
+                .map(entry -> new Intake(entry.getProduct().getFat() * entry.getAmount() * measure,
+                        entry.getProduct().getProtein() * entry.getAmount() * measure,
+                        entry.getProduct().getCarbs() * entry.getAmount() * measure
                 ))
                 .reduce(Intake::add)
                 .orElse(new Intake(0d, 0d, 0d));

@@ -34,12 +34,22 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-
-
-
     public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
+        this.role = role;
+    }
+
+    public User(Long id, String username, String email, Integer age, Integer weight, Integer height, String name, String password, ZoneId timeZone, Role role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.name = name;
+        this.password = password;
+        this.timeZone = timeZone;
         this.role = role;
     }
 
