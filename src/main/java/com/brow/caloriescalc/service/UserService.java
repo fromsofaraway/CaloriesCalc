@@ -18,6 +18,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,11 +45,12 @@ public class UserService {
         User user = new User();
         Role role = roleService.getRoleByName(RoleEnum.ROLE_USER)
                 .orElseThrow(() -> new ResourceNotFoundException("ROLE_USER not found"));
+        ZoneId zoneId = ZoneId.of("Asia/Yerevan"); // default hardcode
 
         user.setUsername(authDto.getUsername());
         user.setPassword(authDto.getPassword());
         user.setRole(role);
-//        user.setTimeZone();
+        user.setTimezone(zoneId);
 
         return userRepository.save(user);
     }
@@ -79,13 +81,17 @@ public class UserService {
 
     public ZonedDateTime getStartOfDay(Long userId) {
         User user = getUserById(userId);
-        ZoneId userZone = user.getTimeZone();
+        ZoneId userZone = user.getTimezone();
         return ZonedDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT, userZone);
     }
 
     public ZonedDateTime getEndOfDay(Long userId) {
         User user = getUserById(userId);
-        ZoneId userZone = user.getTimeZone();
+        ZoneId userZone = user.getTimezone();
         return ZonedDateTime.of(LocalDate.now(), LocalTime.MAX, userZone);
+    }
+
+    public Set<String> getAvailableZoneIds() {
+        return ZoneId.getAvailableZoneIds();
     }
 }

@@ -39,3 +39,6 @@ databaseChangeLog:
               - column:
                   name: weight
                   type: int
+              - column:
+                  name: timezone
+                  type: varchar(255)

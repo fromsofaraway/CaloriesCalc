@@ -28,7 +28,7 @@ public class User {
     @Column
     private String password;
     @Column
-    private ZoneId timeZone;
+    private ZoneId timezone;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
@@ -40,7 +40,7 @@ public class User {
         this.role = role;
     }
 
-    public User(Long id, String username, String email, Integer age, Integer weight, Integer height, String name, String password, ZoneId timeZone, Role role) {
+    public User(Long id, String username, String email, Integer age, Integer weight, Integer height, String name, String password, ZoneId timezone, Role role) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -49,7 +49,7 @@ public class User {
         this.height = height;
         this.name = name;
         this.password = password;
-        this.timeZone = timeZone;
+        this.timezone = timezone;
         this.role = role;
     }
 
@@ -123,19 +123,20 @@ public class User {
         this.role = role;
     }
 
-    public ZoneId getTimeZone() {
-        return timeZone;
+//    public String getTimezone() {
+//        return timezone;
+//    }
+//
+//    public void setTimezone(String timezone) {
+//        this.timezone = timezone;
+//    }
+
+
+    public ZoneId getTimezone() {
+        return timezone;
     }
 
-    public void setTimeZone(ZoneId timeZone) {
-        this.timeZone = timeZone;
-    }
-
-    public void setUtcTimeZone() {
-        this.timeZone = ZoneOffset.UTC;
-    }
-
-    public void setTimeZoneWithOffset(int hoursOffset) {
-        this.timeZone = ZoneOffset.ofHours(hoursOffset);
+    public void setTimezone(ZoneId timezone) {
+        this.timezone = timezone;
     }
 }

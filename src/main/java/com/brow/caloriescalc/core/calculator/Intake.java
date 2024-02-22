@@ -16,8 +16,6 @@ public class Intake {
 
 
     public Intake(Double fat, Double protein, Double carbs) {
-//        this.user = user;
-//        this.entries = entries;
         this.fat = fat;
         this.protein = protein;
         this.carbs = carbs;
@@ -27,7 +25,7 @@ public class Intake {
     }
 
     public Intake add(Intake other) {
-        return new Intake(this.protein + other.protein, this.fat + other.fat, this.carbs + other.carbs);
+        return new Intake(this.fat + other.fat, this.protein + other.protein, this.carbs + other.carbs);
     }
 
     public User getUser() {
@@ -37,14 +35,6 @@ public class Intake {
     public void setUser(User user) {
         this.user = user;
     }
-
-//    public List<FoodDiaryEntry> getEntries() {
-//        return entries;
-//    }
-//
-//    public void setEntries(List<FoodDiaryEntry> entries) {
-//        this.entries = entries;
-//    }
 
     public Double getFat() {
         return fat;
@@ -74,7 +64,4 @@ public class Intake {
         return this.fat * 9 + this.protein * 4 + this.carbs * 4;
     }
 
-    public void setCalories(Double calories) {
-        this.calories = calories;
-    }
 }

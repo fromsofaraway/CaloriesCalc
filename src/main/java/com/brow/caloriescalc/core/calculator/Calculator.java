@@ -1,11 +1,11 @@
 package com.brow.caloriescalc.core.calculator;
 
+import com.brow.caloriescalc.dto.IntakeDto;
 import com.brow.caloriescalc.model.FoodDiaryEntry;
-import com.brow.caloriescalc.model.Product;
-import com.brow.caloriescalc.model.User;
 import com.brow.caloriescalc.service.FoodDiaryEntryService;
 import com.brow.caloriescalc.service.ProductService;
 import com.brow.caloriescalc.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,15 +17,16 @@ public class Calculator {
 
     private final UserService userService;
     private final FoodDiaryEntryService foodDiaryEntryService;
-    private final ProductService productService;
+
+    private final ModelMapper modelMapper;
 
     private Double measure = 0.01; //hardcode, to calculate everything in grams, will decide further how to implement
 
     @Autowired
-    public Calculator(UserService userService, FoodDiaryEntryService foodDiaryEntryService, ProductService productService) {
+    public Calculator(UserService userService, FoodDiaryEntryService foodDiaryEntryService, ModelMapper modelMapper) {
         this.userService = userService;
         this.foodDiaryEntryService = foodDiaryEntryService;
-        this.productService = productService;
+        this.modelMapper = modelMapper;
     }
 
     public Intake calculate(Long userId) {
@@ -42,8 +43,7 @@ public class Calculator {
                 .orElse(new Intake(0d, 0d, 0d));
     }
 
-    // берем юзера, берем его диари ентрис (between business day), для каждого entry высчитываем калории
-    // и суммируем в объект Intake
-
-
+    public IntakeDto convertToDto(Intake intake) {
+        return modelMapper.map(intake, IntakeDto.class);
+    }
 }

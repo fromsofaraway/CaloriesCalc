@@ -2,27 +2,17 @@ package com.brow.caloriescalc.dto;
 
 public class IntakeDto {
 
-    private Long userId;
     private Double fat;
     private Double protein;
     private Double carbs;
 
-    public IntakeDto(Long userId, Double fat, Double protein, Double carbs) {
-        this.userId = userId;
+    public IntakeDto(Double fat, Double protein, Double carbs) {
         this.fat = fat;
         this.protein = protein;
         this.carbs = carbs;
     }
 
     public IntakeDto() {
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public Double getFat() {
