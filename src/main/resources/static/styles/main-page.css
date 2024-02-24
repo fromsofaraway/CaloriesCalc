@@ -1,0 +1,71 @@
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 2rem;
+}
+.button-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+img {
+    width: 100%;
+    max-width: 960px; /* Match the container width to align with the text */
+    height: auto; /* Keep the aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image */
+}
+.modal {
+    display: none; /* Скрыть модальное окно по умолчанию */
+    position: fixed; /* Оставаться на месте при прокрутке */
+    z-index: 1; /* Сидеть над всеми другими элементами */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Включить прокрутку, если нужно */
+    background-color: rgb(0,0,0); /* Цвет фона */
+    background-color: rgba(0,0,0,0.4); /* Черный с небольшой прозрачностью */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% от верха и центрировано по горизонтали */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Можете настроить ширину */
+    max-width: 600px; /* Максимальная ширина */
+    border-radius: 10px; /* Сглаживание углов */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Добавление тени */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+input[type="text"], input[type="password"] {
+    background-color: #f2f2f2; /* Светлый фон */
+    color: #333; /* Темно-серый текст */
+    border: 1px solid #ccc; /* Светло-серая граница */
+    padding: 10px; /* Немного отступа внутри */
+    border-radius: 5px; /* Скругленные углы */
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #4A90E2; /* Синяя граница при фокусе */
+    outline: none; /* Убрать стандартный outline браузера */
+}
+
+

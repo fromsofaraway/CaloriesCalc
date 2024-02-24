@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="../static/styles/main-page.css">
+    <title>Calorie Tracker</title>
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Calorie Tracker</strong></li>
+    </ul>
+    <ul>
+        <li><a href="#">Registration</a></li>
+        <li><a href="#" role="button" id="loginBtn">Login</a></li>
+    </ul>
+</nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2>Welcome to Calorie Tracker</h2>
+                <h3>Your personal calorie counting assistant</h3>
+            </hgroup>
+            <p>The Calorie Tracker helps you monitor your calorie intake and maintain a healthy lifestyle. Its intuitive interface and ease of use will make the process of tracking calories not only beneficial but also enjoyable.</p>
+            <figure>
+                <img src="https://source.unsplash.com/featured/?healthy,food" alt="Healthy Eating" />
+                <figcaption>Image from Unsplash</figcaption>
+            </figure>
+        </section>
+    </div>
+</main>
+<footer class="container">
+    <small>
+        <a href="#">Contact Us</a> • <a href="#">Privacy Policy</a>
+    </small>
+</footer>
+<div id="loginModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required=""><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required=""><br><br>
+            <button type="submit">Log In</button>
+            <div class="button-spinner"></div>
+        </form>
+    </div>
+</div>
+<script src="../static/js/main-page.js"></script>
+</body>
+</html>

@@ -45,7 +45,7 @@ public class UserService {
         User user = new User();
         Role role = roleService.getRoleByName(RoleEnum.ROLE_USER)
                 .orElseThrow(() -> new ResourceNotFoundException("ROLE_USER not found"));
-        ZoneId zoneId = ZoneId.of("Asia/Yerevan"); // default hardcode
+        ZoneId zoneId = ZoneId.of("UTC"); // default hardcode
 
         user.setUsername(authDto.getUsername());
         user.setPassword(authDto.getPassword());

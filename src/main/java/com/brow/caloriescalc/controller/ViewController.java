@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main")
-public class MainController {
+@RequestMapping("/")
+public class ViewController {
 
-    @GetMapping("/")
+    @GetMapping
     public String index(){
-        return "main-view3";
+        return "main-page";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/calc")
     public String register(){
-        return "register";
+        return "main-calc-view";
     }
 
 }

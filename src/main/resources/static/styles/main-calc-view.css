@@ -1,0 +1,49 @@
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #005a87;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00415a;
+}
+
+.date-picker {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.date-nav {
+    cursor: pointer;
+    margin: 0 10px;
+}
+

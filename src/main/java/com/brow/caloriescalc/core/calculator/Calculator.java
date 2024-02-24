@@ -3,7 +3,6 @@ package com.brow.caloriescalc.core.calculator;
 import com.brow.caloriescalc.dto.IntakeDto;
 import com.brow.caloriescalc.model.FoodDiaryEntry;
 import com.brow.caloriescalc.service.FoodDiaryEntryService;
-import com.brow.caloriescalc.service.ProductService;
 import com.brow.caloriescalc.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
