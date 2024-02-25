@@ -9,6 +9,7 @@ import com.brow.caloriescalc.model.User;
 import com.brow.caloriescalc.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,14 +28,15 @@ public class UserService {
 
     private UserRepository userRepository;
     private RoleService roleService;
-
     private ModelMapper modelMapper;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper) {
+    public UserService(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserDto convertToDto(User user) {
@@ -46,9 +48,12 @@ public class UserService {
         Role role = roleService.getRoleByName(RoleEnum.ROLE_USER)
                 .orElseThrow(() -> new ResourceNotFoundException("ROLE_USER not found"));
         ZoneId zoneId = ZoneId.of("UTC"); // default hardcode
+        String username = authDto.getUsername();
+        String rawPassword = authDto.getPassword();
+        String encodedPassword = passwordEncoder.encode(rawPassword);
 
-        user.setUsername(authDto.getUsername());
-        user.setPassword(authDto.getPassword());
+        user.setUsername(username);
+        user.setPassword(encodedPassword);
         user.setRole(role);
         user.setTimezone(zoneId);
 

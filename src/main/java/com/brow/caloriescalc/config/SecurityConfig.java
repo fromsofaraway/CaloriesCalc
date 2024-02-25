@@ -23,19 +23,22 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers("/", "/home", "/api/auth/signin")
-                                .permitAll()
-                                .anyRequest()
-//                        .authenticated()
-                                .permitAll()
+                        .requestMatchers("/", "/static/**", "/api/auth/signin")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
                 )
-//                .formLogin(login -> login
-//                        .loginPage("/login")
-//                        .permitAll()
-//                )
+                .formLogin(login -> login
+                        .loginPage("/")
+                        .loginProcessingUrl("/login")
+                        .failureUrl("/?error=true")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/calc")
+                        .permitAll()
+                )
                 .logout(logout -> logout
                                 .permitAll()
-                                .logoutSuccessUrl("/home")
 //                ).exceptionHandling(ex -> ex
 //                        .authenticationEntryPoint(new AuthenticationEntryPoint())
                 );

@@ -16,11 +16,11 @@ window.onclick = function(event) {
     }
 }
 
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Предотвращаем стандартное поведение формы (отправку)
-
-    // Здесь может быть код для проверки введенных данных, если нужно
-
-    // Редирект на другую страницу
-    window.location.href = "/calc";
-});
+// document.getElementById("loginForm").addEventListener("submit", function(event) {
+//     // event.preventDefault(); // Предотвращаем стандартное поведение формы (отправку)
+//
+//     // Здесь может быть код для проверки введенных данных, если нужно
+//
+//     // Редирект на другую страницу
+//     // window.location.href = "/calc";
+// });
