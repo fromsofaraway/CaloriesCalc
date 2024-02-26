@@ -60,7 +60,7 @@ public class CalculatorTest {
         when(foodDiaryEntryService.getEntriesForCurrentBusinessDay(eq(userId), any(ZonedDateTime.class), any(ZonedDateTime.class)))
                 .thenReturn(entries);
 
-        Intake result = calculator.calculate(userId);
+        Intake result = calculator.calculateForCurrentBusinessDay(userId);
 
         assertEquals(12.5, result.getFat(), 0.01);
         assertEquals(14d, result.getProtein(), 0.01);

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link rel="stylesheet" href="../static/styles/main-page.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <title>Calorie Tracker</title>
 </head>
 <body>
@@ -13,7 +15,7 @@
         <li><strong>Calorie Tracker</strong></li>
     </ul>
     <ul>
-        <li><a href="#">Registration</a></li>
+        <li><a href="#" id="registerBtn">Registration </a></li>
         <li><a href="#" role="button" id="loginBtn">Login</a></li>
     </ul>
 </nav>
@@ -41,7 +43,7 @@
     <div class="modal-content">
         <span class="close">×</span>
         <h2>Login</h2>
-        <form id="loginForm" action="/login" method="post">
+        <form id="loginForm" method="post">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required=""><br>
             <label for="password">Password:</label><br>
@@ -51,6 +53,21 @@
         </form>
     </div>
 </div>
+<div id="registerModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2>Register</h2>
+        <form id="registerForm" action="/register" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="regUsername" name="username" required=""><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="regPassword" name="password" required=""><br><br>
+            <button type="submit">Register</button>
+            <div class="button-spinner"></div>
+        </form>
+    </div>
+</div>
 <script src="../static/js/main-page.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

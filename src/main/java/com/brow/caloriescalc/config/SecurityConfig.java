@@ -1,6 +1,8 @@
 package com.brow.caloriescalc.config;
 
 import com.brow.caloriescalc.security.AuthenticationEntryPoint;
+import com.brow.caloriescalc.security.CustomAuthenticationFailureHandler;
+import com.brow.caloriescalc.security.CustomAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,24 +25,24 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/static/**", "/api/auth/signin")
+                        .requestMatchers("/", "/static/**", "/register")
                         .permitAll()
                         .anyRequest()
-                        .authenticated()
+//                        .authenticated()
+                                .permitAll()
                 )
                 .formLogin(login -> login
                         .loginPage("/")
                         .loginProcessingUrl("/login")
-                        .failureUrl("/?error=true")
+                        .successHandler(new CustomAuthenticationSuccessHandler())
+                        .failureHandler(new CustomAuthenticationFailureHandler())
                         .usernameParameter("username")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/calc")
                         .permitAll()
                 )
+//                .exceptionHandling(ex -> ex.authenticationEntryPoint(new AuthenticationEntryPoint()))
                 .logout(logout -> logout
                                 .permitAll()
-//                ).exceptionHandling(ex -> ex
-//                        .authenticationEntryPoint(new AuthenticationEntryPoint())
                 );
 
         return http.build();

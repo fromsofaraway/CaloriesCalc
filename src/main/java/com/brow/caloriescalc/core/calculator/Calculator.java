@@ -16,7 +16,6 @@ public class Calculator {
 
     private final UserService userService;
     private final FoodDiaryEntryService foodDiaryEntryService;
-
     private final ModelMapper modelMapper;
 
     private Double measure = 0.01; //hardcode, to calculate everything in grams, will decide further how to implement
@@ -28,21 +27,29 @@ public class Calculator {
         this.modelMapper = modelMapper;
     }
 
-    public Intake calculate(Long userId) {
+    public Intake calculateForCurrentBusinessDay(Long userId) {
         ZonedDateTime startOfDay = userService.getStartOfDay(userId);
         ZonedDateTime endOfDay = userService.getEndOfDay(userId);
         List<FoodDiaryEntry> currentUserEntries = foodDiaryEntryService.getEntriesForCurrentBusinessDay(userId, startOfDay, endOfDay);
+        return calculate(currentUserEntries);
+    }
 
-        return currentUserEntries.stream()
+    public Intake calculateForSpecificDay(Long userId, LocalDate date) {
+        List<FoodDiaryEntry> entries = foodDiaryEntryService.getEntriesForSpecificDate(userId, date);
+        return calculate(entries);
+    }
+
+    public IntakeDto convertToDto(Intake intake) {
+        return modelMapper.map(intake, IntakeDto.class);
+    }
+
+    private Intake calculate(List<FoodDiaryEntry> entries) {
+        return entries.stream()
                 .map(entry -> new Intake(entry.getProduct().getFat() * entry.getAmount() * measure,
                         entry.getProduct().getProtein() * entry.getAmount() * measure,
                         entry.getProduct().getCarbs() * entry.getAmount() * measure
                 ))
                 .reduce(Intake::add)
                 .orElse(new Intake(0d, 0d, 0d));
-    }
-
-    public IntakeDto convertToDto(Intake intake) {
-        return modelMapper.map(intake, IntakeDto.class);
     }
 }

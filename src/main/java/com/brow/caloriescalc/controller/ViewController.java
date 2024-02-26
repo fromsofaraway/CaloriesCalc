@@ -15,7 +15,7 @@ public class ViewController {
 
     @GetMapping("/calc")
     public String register(){
-        return "main-calc-view";
+        return "calc-dashboard";
     }
 
 }

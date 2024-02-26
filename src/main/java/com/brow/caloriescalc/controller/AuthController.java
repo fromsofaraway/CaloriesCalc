@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/")
 public class AuthController {
 
     private final UserService userService;
@@ -22,7 +22,7 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/register")
     public ResponseEntity<CommonResponseDto> register(@RequestBody AuthDto registerDto) {
         if (userService.getByUsername(registerDto.getUsername()) != null) {
             return new ResponseEntity<>(new CommonResponseDto("Username is taken!"), HttpStatus.CONFLICT);

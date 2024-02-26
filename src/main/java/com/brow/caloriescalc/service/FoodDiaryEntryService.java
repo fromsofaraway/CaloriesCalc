@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,5 +64,22 @@ public class FoodDiaryEntryService {
     public List<FoodDiaryEntry> getEntriesForCurrentBusinessDay(Long userId, ZonedDateTime startOfDay, ZonedDateTime endOfDay) {
         List<FoodDiaryEntry> businessDayEntries = foodDiaryEntryRepository.findByUserIdAndConsumptionTimeBetween(userId, startOfDay, endOfDay);
         return businessDayEntries;
+    }
+
+    public List<FoodDiaryEntry> getEntriesForSpecificDate(Long userId, LocalDate date) {
+        ZoneId userTimeZone = getUserTimeZone(userId);
+        ZonedDateTime startOfDay = date.atStartOfDay(userTimeZone);
+        ZonedDateTime endOfDay = startOfDay.plusDays(1);
+
+        return foodDiaryEntryRepository.findByUserIdAndConsumptionTimeBetween(userId, startOfDay, endOfDay);
+    }
+
+    private ZoneId getUserTimeZone(Long userId) {
+        User user = userService.getUserById(userId);
+        return user.getTimezone();
+    }
+
+    public FoodDiaryEntryDto convertToDto(FoodDiaryEntry entry) {
+        return modelMapper.map(entry, FoodDiaryEntryDto.class);
     }
 }
