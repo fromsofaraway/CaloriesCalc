@@ -1,18 +1,18 @@
 package com.brow.caloriescalc.dto;
 
-public class IntakeDto {
+public class ProductDto {
 
+    private String name;
     private Double fat;
     private Double protein;
     private Double carbs;
 
-    public IntakeDto(Double fat, Double protein, Double carbs) {
-        this.fat = fat;
-        this.protein = protein;
-        this.carbs = carbs;
+    public String getName() {
+        return name;
     }
 
-    public IntakeDto() {
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getFat() {

@@ -1,7 +1,6 @@
 package com.brow.caloriescalc.service;
 
-import com.brow.caloriescalc.core.calculator.Calculator;
-import com.brow.caloriescalc.core.calculator.Intake;
+import com.brow.caloriescalc.core.calculator.MealCalculatorService;
 import com.brow.caloriescalc.model.FoodDiaryEntry;
 import com.brow.caloriescalc.model.Product;
 import com.brow.caloriescalc.model.Role;
@@ -14,21 +13,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.brow.caloriescalc.model.RoleEnum.ROLE_USER;
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class CalculatorTest {
+public class MealCalculatorServiceTest {
 
     @Mock
     private UserService userService;
     @Mock
     private FoodDiaryEntryService foodDiaryEntryService;
     @InjectMocks
-    private Calculator calculator;
+    private MealCalculatorService mealCalculatorService;
 
     @Test
     public void calculateTest() {
@@ -60,7 +58,7 @@ public class CalculatorTest {
         when(foodDiaryEntryService.getEntriesForCurrentBusinessDay(eq(userId), any(ZonedDateTime.class), any(ZonedDateTime.class)))
                 .thenReturn(entries);
 
-        Intake result = calculator.calculateForCurrentBusinessDay(userId);
+        Intake result = mealCalculatorService.calculateForCurrentBusinessDay(userId);
 
         assertEquals(12.5, result.getFat(), 0.01);
         assertEquals(14d, result.getProtein(), 0.01);

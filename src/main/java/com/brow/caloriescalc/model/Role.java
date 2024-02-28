@@ -2,12 +2,15 @@ package com.brow.caloriescalc.model;
 
 import jakarta.persistence.*;
 
+/**
+ * Represents a role that can be assigned to a user, such as "user" or "admin".
+ */
 @Entity(name = "roles")
 public class Role {
     @Id
     @Column
     private Long id;
-    @Column(columnDefinition = "VARCHAR") // the only thing helped escape validation fail
+    @Column(columnDefinition = "VARCHAR")
     @Enumerated(EnumType.STRING)
     private RoleEnum name;
 

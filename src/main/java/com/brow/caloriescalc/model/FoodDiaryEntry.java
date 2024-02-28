@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
+/**
+ * Represents a diary entry recording the consumption of a particular product by a user.
+ */
 @Entity
 @Table(name = "food_diary_entries")
 public class FoodDiaryEntry {
@@ -60,8 +63,6 @@ public class FoodDiaryEntry {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
-
-
 
     public ZonedDateTime getConsumptionTime() {
         return consumptionTime;

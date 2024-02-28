@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-
+/**
+ * Represents a user in the system with associated information such as username, email, age, weight, height, etc.
+ */
 @Entity
 @Table(name = "users")
 public class User {
@@ -122,15 +124,6 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
-
-//    public String getTimezone() {
-//        return timezone;
-//    }
-//
-//    public void setTimezone(String timezone) {
-//        this.timezone = timezone;
-//    }
-
 
     public ZoneId getTimezone() {
         return timezone;

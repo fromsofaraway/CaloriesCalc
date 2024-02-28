@@ -3,7 +3,10 @@ package com.brow.caloriescalc.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-
+/**
+ * Represents a food product with its macronutrient information.
+ * Each product has a name, fat content, protein content, and carbohydrate content.
+ */
 @Entity
 @Table(name = "products")
 public class Product {

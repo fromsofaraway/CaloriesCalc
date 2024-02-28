@@ -1,12 +1,14 @@
 package com.brow.caloriescalc.dto;
 
 
+
 import java.time.ZonedDateTime;
 
 public class FoodDiaryEntryDto {
 
     private Long userId;
     private Long productId;
+    private ProductDto product;
     private Double amount;
     private ZonedDateTime consumptionTime;
 
@@ -48,5 +50,13 @@ public class FoodDiaryEntryDto {
 
     public void setConsumptionTime(ZonedDateTime consumptionTime) {
         this.consumptionTime = consumptionTime;
+    }
+
+    public ProductDto getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDto product) {
+        this.product = product;
     }
 }
