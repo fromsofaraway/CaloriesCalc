@@ -1,6 +1,5 @@
 package com.brow.caloriescalc.core.calculator;
 
-import com.brow.caloriescalc.dto.IntakeDto;
 import com.brow.caloriescalc.dto.MealDto;
 import com.brow.caloriescalc.model.FoodDiaryEntry;
 import com.brow.caloriescalc.service.FoodDiaryEntryService;
@@ -50,7 +49,7 @@ public class MealCalculatorService {
                 .collect(Collectors.toList());
     }
 
-    public NutrientTotals calculateTotalNutrients(List<Meal> meals, Long userId, LocalDate date) {
+    public NutrientTotals calculateTotalNutrients(List<Meal> meals) {
         return new NutrientTotals(
                 meals.stream().mapToDouble(Meal::getMealFat).sum(),
                 meals.stream().mapToDouble(Meal::getMealProtein).sum(),

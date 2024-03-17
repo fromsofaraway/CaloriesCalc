@@ -3,6 +3,7 @@ package com.brow.caloriescalc.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -47,5 +48,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleAbsenceOfResources(ResourceNotFoundException ex) {
         String errorMessage = ex.getMessage();
         return new ResponseEntity<>(Collections.singletonMap("error", errorMessage), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<?> handleBadCredentialsException(BadCredentialsException ex) {
+        String errorMessage = ex.getMessage();
+        return new ResponseEntity<>(Collections.singletonMap("error", errorMessage), HttpStatus.UNAUTHORIZED);
     }
 }

@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing roles.
+ */
 @Service
 @Transactional
 public class RoleService {

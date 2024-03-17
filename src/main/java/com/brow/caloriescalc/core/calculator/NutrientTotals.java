@@ -1,9 +1,8 @@
 package com.brow.caloriescalc.core.calculator;
 
 /**
- * Entity that represents total intake per day.
+ * Represents the aggregated nutrient totals for a day.
  */
-
 public class NutrientTotals {
 
     private double totalFat;
@@ -17,8 +16,6 @@ public class NutrientTotals {
         this.totalCarbs = totalCarbs;
         this.totalCalories = totalCalories;
     }
-
-
 
     public double getTotalFat() {
         return totalFat;

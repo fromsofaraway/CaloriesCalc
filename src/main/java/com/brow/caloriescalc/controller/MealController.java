@@ -52,7 +52,7 @@ public class MealController {
         }
 
         List<Meal> meals = mealCalculatorService.getUserMealsForSpecificDay(userId, date);
-        NutrientTotals totals = mealCalculatorService.calculateTotalNutrients(meals, userId, date);
+        NutrientTotals totals = mealCalculatorService.calculateTotalNutrients(meals);
 
         return new ResponseEntity<>(totals, HttpStatus.OK);
     }

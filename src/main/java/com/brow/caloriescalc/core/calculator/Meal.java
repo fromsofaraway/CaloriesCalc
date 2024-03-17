@@ -2,7 +2,9 @@ package com.brow.caloriescalc.core.calculator;
 
 import com.brow.caloriescalc.model.FoodDiaryEntry;
 
-
+/**
+ * Represents a meal calculated from a food diary entry, providing information about consumed nutrients and calories.
+ */
 public class Meal {
     private FoodDiaryEntry diaryEntry;
     private Double mealFat;
@@ -11,6 +13,15 @@ public class Meal {
     private Double mealCalories;
 
 
+    /**
+     * Constructs a new Meal instance with the specified parameters.
+     *
+     * @param diaryEntry   The food diary entry representing the consumed meal.
+     * @param mealFat      The amount of fat consumed in the meal.
+     * @param mealProtein  The amount of protein consumed in the meal.
+     * @param mealCarbs    The amount of carbohydrates consumed in the meal.
+     * @param mealCalories The total calories consumed in the meal.
+     */
     public Meal(FoodDiaryEntry diaryEntry, Double mealFat, Double mealProtein, Double mealCarbs, Double mealCalories) {
         this.diaryEntry = diaryEntry;
         this.mealFat = mealFat;

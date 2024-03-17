@@ -1,5 +1,7 @@
 package com.brow.caloriescalc.dto;
-
+/**
+ * Data transfer object for user registration. Used in AuthController.
+ */
 public class AuthDto {
 
     private String username;

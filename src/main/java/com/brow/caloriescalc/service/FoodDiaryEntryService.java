@@ -1,7 +1,6 @@
 package com.brow.caloriescalc.service;
 
 import com.brow.caloriescalc.dto.FoodDiaryEntryDto;
-import com.brow.caloriescalc.exception.ResourceNotFoundException;
 import com.brow.caloriescalc.model.FoodDiaryEntry;
 import com.brow.caloriescalc.model.Product;
 import com.brow.caloriescalc.model.User;
@@ -12,12 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class responsible for managing food diary entries.
+ */
 @Service
 @Transactional
 public class FoodDiaryEntryService {
@@ -59,11 +60,6 @@ public class FoodDiaryEntryService {
                 .collect(Collectors.toList());
 
         return entryDtos;
-    }
-
-    public List<FoodDiaryEntry> getEntriesForCurrentBusinessDay(Long userId, ZonedDateTime startOfDay, ZonedDateTime endOfDay) {
-        List<FoodDiaryEntry> businessDayEntries = foodDiaryEntryRepository.findByUserIdAndConsumptionTimeBetween(userId, startOfDay, endOfDay);
-        return businessDayEntries;
     }
 
     public List<FoodDiaryEntry> getEntriesForSpecificDate(Long userId, LocalDate date) {

@@ -27,6 +27,7 @@ public class JWTProviderTest {
 
     @BeforeEach
     void setup() {
+        user = new User();
         jwtProvider = new JWTProvider();
         user.setUsername("username");
         user.setPassword("password");

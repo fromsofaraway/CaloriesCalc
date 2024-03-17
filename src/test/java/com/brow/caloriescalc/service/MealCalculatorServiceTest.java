@@ -1,6 +1,8 @@
 package com.brow.caloriescalc.service;
 
+import com.brow.caloriescalc.core.calculator.Meal;
 import com.brow.caloriescalc.core.calculator.MealCalculatorService;
+import com.brow.caloriescalc.core.calculator.NutrientTotals;
 import com.brow.caloriescalc.model.FoodDiaryEntry;
 import com.brow.caloriescalc.model.Product;
 import com.brow.caloriescalc.model.Role;
@@ -13,7 +15,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.brow.caloriescalc.model.RoleEnum.ROLE_USER;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -28,6 +32,7 @@ public class MealCalculatorServiceTest {
     @InjectMocks
     private MealCalculatorService mealCalculatorService;
 
+    //need to modify since intake and calc classes redesigned to nutrients total and meal
     @Test
     public void calculateTest() {
         Long userId = 1L;
@@ -55,18 +60,20 @@ public class MealCalculatorServiceTest {
         FoodDiaryEntry entry = new FoodDiaryEntry(user, product, 500d, ZonedDateTime.now());
         List<FoodDiaryEntry> entries = List.of(entry);
 
-        when(foodDiaryEntryService.getEntriesForCurrentBusinessDay(eq(userId), any(ZonedDateTime.class), any(ZonedDateTime.class)))
+        when(foodDiaryEntryService.getEntriesForSpecificDate(eq(userId), any(LocalDate.class)))
                 .thenReturn(entries);
 
-        Intake result = mealCalculatorService.calculateForCurrentBusinessDay(userId);
+        List<Meal> meals = mealCalculatorService.getUserMealsForSpecificDay(userId, LocalDate.now());
+        NutrientTotals totals = mealCalculatorService.calculateTotalNutrients(meals);
 
-        assertEquals(12.5, result.getFat(), 0.01);
-        assertEquals(14d, result.getProtein(), 0.01);
-        assertEquals(23.5, result.getCarbs(), 0.01);
+        assertEquals(12.5, totals.getTotalFat(), 0.01);
+        assertEquals(14d, totals.getTotalProtein(), 0.01);
+        assertEquals(23.5, totals.getTotalCarbs(), 0.01);
+//        assertEquals();
 
         verify(userService).getStartOfDay(userId);
         verify(userService).getEndOfDay(userId);
-        verify(foodDiaryEntryService).getEntriesForCurrentBusinessDay(eq(userId), any(ZonedDateTime.class), any(ZonedDateTime.class));
+        verify(foodDiaryEntryService).getEntriesForSpecificDate(eq(userId), any(LocalDate.class));
 
     }
 }

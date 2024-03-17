@@ -1,12 +1,15 @@
 package com.brow.caloriescalc.jwt;
 
 
+import com.brow.caloriescalc.exception.ResourceNotFoundException;
 import com.brow.caloriescalc.security.SecurityConstants;
+import com.brow.caloriescalc.security.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -19,10 +22,18 @@ public class JWTProvider {
         Date currentDate = new Date();
         Date expDate = new Date(currentDate.getTime() + SecurityConstants.JWT_EXPIRATION);
 
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        String role = userPrincipal.getAuthorities()
+                .stream()
+                .findFirst()
+                .map(GrantedAuthority::getAuthority)
+                .orElseThrow(() -> new ResourceNotFoundException("No roles found for " + username));
+
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(currentDate)
                 .setExpiration(expDate)
+                .claim("role", role)
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET)
                 .compact();
     }
